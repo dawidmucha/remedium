@@ -40,11 +40,10 @@
 				if(count($access) == 1) {
 					if($access[0]["idRole"] == 1) { //admin
 						RoleUtils::addRole('admin');
-						SessionUtils::store('access', 'admin');
 					} else if($access[0]["idRole"] == 2) { //user
 						RoleUtils::addRole('user');
-						SessionUtils::store('access', 'user');
 					} 
+					SessionUtils::store('idUser', $users[0]['idUser']);
 				} // TODO: error when 2 types of access
 
 				App::getRouter()->redirectTo('articles');

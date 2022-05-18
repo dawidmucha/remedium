@@ -8,16 +8,27 @@
 		{block name='topbar'}
 			<a href='{$conf->action_root}'>Re:medium</a>
 
-			{if isset($access)}
+			{if (core\RoleUtils::inRole('user'))}
 				<div>
-					Obecnie zalogowany jako {$access}
+					Obecnie zalogowany jako user
 				</div>
 				<form action='{$conf->action_root}logout' method='post'>			
 					<input type='submit' value='log out' />
 				</form>
 
-				<form action='{$conf->action_root}newpost' method='post'>
-					<input type='submit' value='new post' />
+				<form action='{$conf->action_root}newarticle' method='post'>
+					<input type='submit' value='new article' />
+				</form>
+			{elseif (core\RoleUtils::inRole('admin'))}
+				<div>
+					Obecnie zalogowany jako admin
+				</div>
+				<form action='{$conf->action_root}logout' method='post'>			
+					<input type='submit' value='log out' />
+				</form>
+
+				<form action='{$conf->action_root}newarticle' method='post'>
+					<input type='submit' value='new article' />
 				</form>
 			{else}
 				<div>

@@ -1,9 +1,9 @@
 <?php
 	namespace app\forms;
 
-	class NewPostForm {
+	class NewArticleForm {
 		public $title;
 		public $content;
-		public $tags;
+		public $idCategory;
 	}
 ?>

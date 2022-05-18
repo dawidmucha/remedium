@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-05-17 19:43:14
+/* Smarty version 4.1.0, created on 2022-05-18 13:42:27
   from 'C:\xampp\htdocs\koncowy\app\views\templates\layout.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_6283deb2a83fe9_52863553',
+  'unifunc' => 'content_6284dba3226027_04384418',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '563272dcfa535c729bc22b8c9157f4c1c4d1ba78' => 
     array (
       0 => 'C:\\xampp\\htdocs\\koncowy\\app\\views\\templates\\layout.tpl',
-      1 => 1652809389,
+      1 => 1652874137,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6283deb2a83fe9_52863553 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6284dba3226027_04384418 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -32,23 +32,23 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 	</head>
 	<body>
 		<?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2729593006283deb2a6c7f1_44319454', 'topbar');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_14189747976284dba3211d64_85198495', 'topbar');
 ?>
 
 
 		<?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_3548712596283deb2a82f42_42163719', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_5112701226284dba3225432_72733677', 'content');
 ?>
 
 	</body>
 </html><?php }
 /* {block 'topbar'} */
-class Block_2729593006283deb2a6c7f1_44319454 extends Smarty_Internal_Block
+class Block_14189747976284dba3211d64_85198495 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'topbar' => 
   array (
-    0 => 'Block_2729593006283deb2a6c7f1_44319454',
+    0 => 'Block_14189747976284dba3211d64_85198495',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -57,10 +57,9 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 			<a href='<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 '>Re:medium</a>
 
-			<?php if ((isset($_smarty_tpl->tpl_vars['access']->value))) {?>
+			<?php if ((core\RoleUtils::inRole('user'))) {?>
 				<div>
-					Obecnie zalogowany jako <?php echo $_smarty_tpl->tpl_vars['access']->value;?>
-
+					Obecnie zalogowany jako user
 				</div>
 				<form action='<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 logout' method='post'>			
@@ -68,8 +67,21 @@ logout' method='post'>
 				</form>
 
 				<form action='<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
-newpost' method='post'>
-					<input type='submit' value='new post' />
+newarticle' method='post'>
+					<input type='submit' value='new article' />
+				</form>
+			<?php } elseif ((core\RoleUtils::inRole('admin'))) {?>
+				<div>
+					Obecnie zalogowany jako admin
+				</div>
+				<form action='<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+logout' method='post'>			
+					<input type='submit' value='log out' />
+				</form>
+
+				<form action='<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+newarticle' method='post'>
+					<input type='submit' value='new article' />
 				</form>
 			<?php } else { ?>
 				<div>
@@ -89,12 +101,12 @@ signup' method='post'>
 }
 /* {/block 'topbar'} */
 /* {block 'content'} */
-class Block_3548712596283deb2a82f42_42163719 extends Smarty_Internal_Block
+class Block_5112701226284dba3225432_72733677 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_3548712596283deb2a82f42_42163719',
+    0 => 'Block_5112701226284dba3225432_72733677',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
