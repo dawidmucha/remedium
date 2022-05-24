@@ -17,7 +17,7 @@
 			$this->form->filter = ParamUtils::getFromRequest('filter');
 
 			// articles with user's names and categories
-			if($this->form->filter == null || $this->form->filter == "EVERYTHING") {
+			if($this->form->filter == null || $this->form->filter == "-") {
 				$articles = App::getDB()->select(
 					'article',
 					array(
