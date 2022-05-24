@@ -17,7 +17,7 @@
 			$this->form->filter = ParamUtils::getFromRequest('filter');
 
 			// articles with user's names and categories
-			if($this->form->filter == null) {
+			if($this->form->filter == null || $this->form->filter == "EVERYTHING") {
 				$articles = App::getDB()->select(
 					'article',
 					array(
@@ -57,6 +57,7 @@
 			$categories = App::getDB()->select('category', 'name');
 
 			App::getSmarty()->assign('categories', $categories);
+			App::getSmarty()->assign('curr_category', $this->form->filter);
 			App::getSmarty()->assign('articles', $articles);
 			App::getSmarty()->assign('access', \core\SessionUtils::load('access'));
 			App::getSmarty()->display('articles.tpl');
