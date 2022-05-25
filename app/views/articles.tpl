@@ -19,16 +19,6 @@
 		{/if}
 	</form>
 	{foreach $articles as $article}
-		<div style="border: 1px solid black">
-			<h3>{$article["title"]}</h3>
-			<h4>
-				by 
-				<form style="display: inline-block" action='{$conf->action_root}user' method='post'> <!-- https://stackoverflow.com/questions/6210900/how-can-i-pass-post-parameters-in-a-url -->
-					<input type='hidden' name='user' value='{$article["login"]}' />
-					<button><b><u>{$article["login"]}</u></b></button> 
-				</form>
-				at {$article["createdAt"]} #{$article["name"]}</h4>
-			<p>{$article["content"]}</p>
-		</div>
+		{include 'article.tpl' article=$article}
 	{/foreach}
 {/block}

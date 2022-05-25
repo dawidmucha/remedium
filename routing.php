@@ -13,6 +13,10 @@ Utils::addRoute('logout', 'LogInCtrl');
 Utils::addRoute('articles', 'ArticlesCtrl');
 Utils::addRoute('newarticle', 'NewArticleCtrl', ['user', 'admin']);
 
+Utils::addRoute('articlePage', 'ArticlePageCtrl');
+Utils::addRoute('upvote', 'ArticlePageCtrl');
+Utils::addRoute('comment', 'ArticlePageCtrl');
+
 Utils::addRoute('user', 'UserProfileCtrl');
 
 Utils::addRoute('accessdenied', 'LogInCtrl');

@@ -10,7 +10,7 @@
 
 			{if (core\RoleUtils::inRole('user'))}
 				<div>
-					Obecnie zalogowany jako user
+					Obecnie zalogowany jako user {\core\SessionUtils::load('id', true)}
 				</div>
 				<form action='{$conf->action_root}logout' method='post'>			
 					<input type='submit' value='log out' />

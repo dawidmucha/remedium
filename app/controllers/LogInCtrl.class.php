@@ -43,7 +43,9 @@
 					} else if($access[0]["idRole"] == 2) { //user
 						RoleUtils::addRole('user');
 					} 
+					// TODO: remove the first one (backwards combatibility)
 					SessionUtils::store('idUser', $users[0]['idUser']);
+					SessionUtils::store('id', $users[0]['idUser']);
 				} // TODO: error when 2 types of access
 
 				App::getRouter()->redirectTo('articles');
