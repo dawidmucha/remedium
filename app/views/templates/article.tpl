@@ -1,3 +1,5 @@
+{$comments = \core\App::getDB()->select('comment', array('idArticle'), array('idArticle' => $article['idArticle']))}
+
 <div style="border: 1px solid black">
 	<h3>{$article["title"]}</h3>
 	<h4>
@@ -11,6 +13,6 @@
 	<form action='{$conf->action_root}articlePage' method='post'>
 		<input type='hidden' name='idArticle' value='{$article["idArticle"]}' />
 		<input type='hidden' name='idUser' value='{\core\SessionUtils::load("idUser", true)}' />
-		<button>Continue</button>
+		<button>Continue</button> {count($comments)} Comments
 	</form>
 </div>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-05-25 20:41:19
+/* Smarty version 4.1.0, created on 2022-05-29 21:57:06
   from 'C:\xampp\htdocs\koncowy\app\views\templates\article.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_628e784f0106e0_64312014',
+  'unifunc' => 'content_6293d01252f871_27821711',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c0564cb5129e0643eec6102a57a7fc8aa3255ef5' => 
     array (
       0 => 'C:\\xampp\\htdocs\\koncowy\\app\\views\\templates\\article.tpl',
-      1 => 1653504072,
+      1 => 1653854223,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_628e784f0106e0_64312014 (Smarty_Internal_Template $_smarty_tpl) {
-?><div style="border: 1px solid black">
+function content_6293d01252f871_27821711 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_assignInScope('comments', \core\App::getDB()->select('comment',array('idArticle'),array('idArticle'=>$_smarty_tpl->tpl_vars['article']->value['idArticle'])));?>
+
+<div style="border: 1px solid black">
 	<h3><?php echo $_smarty_tpl->tpl_vars['article']->value["title"];?>
 </h3>
 	<h4>
@@ -44,7 +46,8 @@ articlePage' method='post'>
 ' />
 		<input type='hidden' name='idUser' value='<?php echo \core\SessionUtils::load("idUser",true);?>
 ' />
-		<button>Continue</button>
+		<button>Continue</button> <?php echo count($_smarty_tpl->tpl_vars['comments']->value);?>
+ Comments
 	</form>
 </div><?php }
 }
