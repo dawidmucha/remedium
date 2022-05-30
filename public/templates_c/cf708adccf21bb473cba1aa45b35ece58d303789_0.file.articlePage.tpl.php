@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-05-30 18:08:12
+/* Smarty version 4.1.0, created on 2022-05-30 23:12:04
   from 'C:\xampp\htdocs\koncowy\app\views\articlePage.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_6294ebec6cf1a7_38278389',
+  'unifunc' => 'content_62953324da2736_51722301',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cf708adccf21bb473cba1aa45b35ece58d303789' => 
     array (
       0 => 'C:\\xampp\\htdocs\\koncowy\\app\\views\\articlePage.tpl',
-      1 => 1653926889,
+      1 => 1653945118,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6294ebec6cf1a7_38278389 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62953324da2736_51722301 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_7892967476294ebec6b34d9_79889306', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_212603688662953324d6b2c0_67418362', 'content');
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, 'layout.tpl');
 }
 /* {block 'content'} */
-class Block_7892967476294ebec6b34d9_79889306 extends Smarty_Internal_Block
+class Block_212603688662953324d6b2c0_67418362 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_7892967476294ebec6b34d9_79889306',
+    0 => 'Block_212603688662953324d6b2c0_67418362',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -61,6 +61,19 @@ user' method='post'> <!-- https://stackoverflow.com/questions/6210900/how-can-i-
 </p>
 		<?php if ((\core\RoleUtils::inRole('user') || \core\RoleUtils::inRole('admin'))) {?>
 			<div>
+				<!-- remove article -->
+				<?php if (($_smarty_tpl->tpl_vars['article']->value['idUser'] == \core\SessionUtils::load('id',true)) || (\core\RoleUtils::inRole('admin'))) {?>
+					<form action=<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+removeArticle method='post'>
+						<input type='hidden' name='idUser' value='<?php echo \core\SessionUtils::load("idUser",true);?>
+' />
+						<input type='hidden' name='idArticle' value='<?php echo $_smarty_tpl->tpl_vars['article']->value["idArticle"];?>
+' />
+						<h4><button class='btn btn-danger'>REMOVE ARTICLE</button></h4>
+					</form>
+				<?php }?>
+				
+				<!-- upvote -->
 				<form action='<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 upvote' method='post'>
 					<input type='hidden' name='idUser' value='<?php echo \core\SessionUtils::load("idUser",true);?>
@@ -72,6 +85,7 @@ upvote' method='post'>
 </span></h4>
 				</form>
 
+				<!-- comment -->
 				<form action='<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 comment' method='post' class='d-flex flex-column align-items-center'>
 					<textarea rows='5' cols='60' id='comment' name='comment' class='m-3 p-1'></textarea>
@@ -101,7 +115,8 @@ $_smarty_tpl->tpl_vars['comment']->do_else = false;
 				<div class='m-2'>
 					<b><?php echo $_smarty_tpl->tpl_vars['comment']->value['login'];?>
 </b>:  <?php echo $_smarty_tpl->tpl_vars['comment']->value['content'];?>
-
+ <i style='color: grey;'>at <?php echo $_smarty_tpl->tpl_vars['comment']->value['createdAt'];?>
+</i>
 					<?php if (($_smarty_tpl->tpl_vars['comment']->value['idUser'] == \core\SessionUtils::load('id',true)) || (\core\RoleUtils::inRole('admin'))) {?>
 						<form action='<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 removeComment' method='post' style='display: inline-block'>

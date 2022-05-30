@@ -6,11 +6,15 @@
 
 	use app\forms\ArticlePageForm;
 
+	use app\controllers\ArticlesCtrl;
+
 	class ArticlePageCtrl {
 		public $form;
+		public $articles;
 
 		public function __construct() {
 			$this->form = new ArticlePageForm;
+			$this->articles = new ArticlesCtrl;
 		}
 		
 		public function action_upvote() {
@@ -69,6 +73,17 @@
 			$this->action_articlePage();
 		}
 
+		public function action_removeArticle() {
+			$this->form->id = ParamUtils::getFromRequest('idArticle');
+			$this->form->idUser = ParamUtils::getFromRequest('idUser');
+
+			App::getDB()->delete('article', array(
+				'idArticle' => $this->form->id
+			));
+
+			$this->articles->action_articles();
+		}
+
 		public function action_articlePage() {
 			$this->form->id = ParamUtils::getFromRequest('idArticle');
 			$this->form->idUser = ParamUtils::getFromRequest('idUser');
@@ -86,6 +101,7 @@
 						'article.createdAt',
 						'article.title',
 						'article.content',
+						'article.idUser',
 						'user.login',
 						'category.name'
 					),
@@ -97,8 +113,7 @@
 
 			//check if there are upvotes
 			$upvotes = App::getDB()->select('upvote', '*', array(
-				'idArticle' => $this->form->id,
-				'idUser' => $this->form->idUser
+				'idArticle' => $this->form->id
 			));
 
 			if(count($upvotes) == 0) {
@@ -113,8 +128,11 @@
 			), array(
 				'comment.idComment',
 				'comment.content',
+				'comment.createdAt',
 				'user.login',
 				'user.idUser'
+			), array(
+				'idArticle' => $this->form->id
 			));
 
 			App::getSmarty()->assign('upvotesNumber', count($upvotes));

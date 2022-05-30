@@ -3,18 +3,24 @@
 {$categories = core\App::getDB()->select("category", "*")}
 
 {block name='content'}
-	<form action='{$conf->action_root}newarticle' method='post'>
-		<label for='login'>Title</label>
-		<input type='text' id='title' name='title' /><br />
-		
-		<fieldset>
-			{foreach $categories as $category}
-				<label><input type='radio' name='idCategory' value={$category['idCategory']}>{$category['name']}</input></label>
-			{/foreach}
+	<form class='d-flex m-3 justify-content-around' action='{$conf->action_root}newarticle' method='post'>
+		<div>
+			<div class='m-3'>
+				<label for='login'>Title</label>
+				<input type='text' id='title' name='title' /><br />
+			</div>
+			
+			<fieldset class='form-check'>
+				{foreach $categories as $category}
+					<input class='m-1 form-check-input' type='radio' name='idCategory' value={$category['idCategory']} />
+					<label class='m-1 form-check-label'>{$category['name']}</label> <br />
+				{/foreach}
 		</fieldset>
+		</div>
 
-		<textarea rows='20' cols='120' id='content' name='content'></textarea>
-		
-		<input type='submit' value='submit' />
+		<div class='d-flex flex-column'>
+			<textarea class='m-3' rows='20' cols='120' id='content' name='content'></textarea>
+			<input class='btn btn-primary p-3 m-3' type='submit' value='submit' />
+		</div>
 	</form>
 {/block}

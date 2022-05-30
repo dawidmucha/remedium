@@ -25,6 +25,13 @@
 					"password" => $this->form->password
 				]);
 
+				$idUser = App::getDB()->id();
+
+				App::getDB()->insert('rolelog', [
+					"idRole" => '2',
+					"idUser" => $idUser
+				]);
+
 				$this->form->email = null;
 				$this->form->login = null;
 				$this->form->password = null;
