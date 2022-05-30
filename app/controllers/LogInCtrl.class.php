@@ -44,8 +44,9 @@
 						RoleUtils::addRole('user');
 					} 
 					// TODO: remove the first one (backwards combatibility)
-					SessionUtils::store('idUser', $users[0]['idUser']);
 					SessionUtils::store('id', $users[0]['idUser']);
+					SessionUtils::store('idUser', $users[0]['idUser']);
+					SessionUtils::store('username', $users[0]['login']);
 				} // TODO: error when 2 types of access
 
 				App::getRouter()->redirectTo('articles');

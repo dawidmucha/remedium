@@ -3,45 +3,53 @@
 	<head>
 		<meta charset="utf-8"/>
 		<title>Remedium</title>
+
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	</head>
 	<body>
 		{block name='topbar'}
-			<a href='{$conf->action_root}'>Re:medium</a>
+			<div class='navbar bg-light p-3'>
+				<a href='{$conf->action_root}'>
+					<img src='https://i.imgur.com/bdDUZrG.png' alt='remedium logo' />
+				</a>
 
-			{if (core\RoleUtils::inRole('user'))}
-				<div>
-					Obecnie zalogowany jako user {\core\SessionUtils::load('id', true)}
-				</div>
-				<form action='{$conf->action_root}logout' method='post'>			
-					<input type='submit' value='log out' />
-				</form>
+				{if (core\RoleUtils::inRole('user')) || (core\RoleUtils::inRole('admin'))}
+					<div class='d-flex flex-column align-items-stretch'>
+						<div class='p-2'>
+							Currently logged in as <b>{\core\SessionUtils::load('username', true)}</b>
+							{if (core\RoleUtils::inRole('admin'))}
+								(admin)
+							{/if}
+						</div>
 
-				<form action='{$conf->action_root}newarticle' method='post'>
-					<input type='submit' value='new article' />
-				</form>
-			{elseif (core\RoleUtils::inRole('admin'))}
-				<div>
-					Obecnie zalogowany jako admin
-				</div>
-				<form action='{$conf->action_root}logout' method='post'>			
-					<input type='submit' value='log out' />
-				</form>
+						<div class='d-flex flex-row justify-content-evenly'>
+							<form action='{$conf->action_root}newarticle' method='post'>
+								<input type='submit' value='new article' class='p-2 btn btn-primary' />
+							</form>
 
-				<form action='{$conf->action_root}newarticle' method='post'>
-					<input type='submit' value='new article' />
-				</form>
-			{else}
-				<div>
-					Obecnie przeglądasz jako gość
-				</div>
-				<form action='{$conf->action_root}login' method='post'>			
-					<input type='submit' value='log in' />
-				</form>
-				<form action='{$conf->action_root}signup' method='post'>			
-					<input type='submit' value='sign up' />
-				</form>
-			{/if}
-		{/block}
+							<form action='{$conf->action_root}logout' method='post'>			
+								<input type='submit' value='log out' class='p-2 btn btn-secondary' />
+							</form>
+						</div>
+					</div>
+				{else}
+					<div class='d-flex flex-column align-items-stretch'>
+						<div class='p-2'>
+							Obecnie przeglądasz jako gość
+						</div>
+
+						<div class='d-flex flex-row justify-content-evenly'>
+							<form action='{$conf->action_root}login' method='post'>			
+								<input type='submit' value='log in' class='p-2 btn btn-primary' />
+							</form>
+							<form action='{$conf->action_root}signup' method='post'>			
+								<input type='submit' value='sign up' class='p-2 btn btn-success' />
+							</form>
+						</div>
+					</div>
+				{/if}
+			{/block}
+		</div>
 
 		{block name='content'}
 			<div>Default 'content' block</div>
