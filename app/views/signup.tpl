@@ -7,9 +7,9 @@
 		<label for='email'>Email</label>
 		<input type='text' id='email' name='email' value='{$form->email}' class='m-2' />
 		<label for='password'>Password</label>
-		<input type='text' id='password' name='password' class='m-2' />
+		<input type='password' id='password' name='password' class='m-2' />
 		<label for='password2'>Confirm Password</label>
-		<input type='text' id='password2' name='password2' class='m-2' />
+		<input type='password' id='password2' name='password2' class='m-2' />
 		
 		<input type='submit' value='sign up' class='btn btn-primary p-3 m-3' />
 	</form>	

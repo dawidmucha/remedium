@@ -43,14 +43,14 @@
 					} else if($access[0]["idRole"] == 2) { //user
 						RoleUtils::addRole('user');
 					} 
-					// TODO: remove the first one (backwards combatibility)
+				
 					SessionUtils::store('id', $users[0]['idUser']);
 					SessionUtils::store('idUser', $users[0]['idUser']);
 					SessionUtils::store('username', $users[0]['login']);
-				} // TODO: error when 2 types of access
+				}
 
 				App::getRouter()->redirectTo('articles');
-			} else { // TODO: error when 2 accounts with the same name
+			} else {
 				$this->generateView();
 			}
 		}

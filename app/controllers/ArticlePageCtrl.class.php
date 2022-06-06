@@ -115,8 +115,12 @@
 			$upvotes = App::getDB()->select('upvote', '*', array(
 				'idArticle' => $this->form->id
 			));
+			$userUpvotes = App::getDB()->select('upvote', '*', array(
+				'idArticle' => $this->form->id,
+				'idUser' => $this->form->idUser
+			));
 
-			if(count($upvotes) == 0) {
+			if(count($userUpvotes) == 0) {
 				$this->form->upvoteButtonText = "UPVOTE";
 			} else {
 				$this->form->upvoteButtonText = "REMOVE UPVOTE";

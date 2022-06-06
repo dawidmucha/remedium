@@ -21,9 +21,12 @@ Utils::addRoute('comment', 'ArticlePageCtrl', ['user', 'admin']);
 Utils::addRoute('removeComment', 'ArticlePageCtrl', ['user', 'admin']);
 Utils::addRoute('removeArticle', 'ArticlePageCtrl', ['user', 'admin']);
 
+Utils::addRoute('adminPanel', 'AdminPanelCtrl', ['admin']);
+Utils::addRoute('adminPanelEdit', 'AdminPanelCtrl', ['admin']);
+Utils::addRoute('adminPanelEditSubmit', 'AdminPanelCtrl', ['admin']);
+Utils::addRoute('adminPanelAdmin', 'AdminPanelCtrl', ['admin']);
+Utils::addRoute('adminPanelRemove', 'AdminPanelCtrl', ['admin']);
+
 Utils::addRoute('user', 'UserProfileCtrl');
 
 Utils::addRoute('accessdenied', 'LogInCtrl');
-
-
-//Utils::addRoute('action_name', 'controller_class_name');

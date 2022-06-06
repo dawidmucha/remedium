@@ -1,15 +1,19 @@
 <?php
 	namespace app\controllers;
 
+	use app\controllers\LogInCtrl;
+
 	use app\forms\SignUpForm;
 	use core\ParamUtils;
 	use core\App;
 
 	class SignUpCtrl {
 		private $form;
+		public $logIn;
 
 		public function __construct() {
 			$this->form = new SignUpForm();
+			$this->logIn = new LogInCtrl();
 		}
 
 		public function action_signup() {
@@ -36,6 +40,8 @@
 				$this->form->login = null;
 				$this->form->password = null;
 				$this->form->password2 = null;
+
+				$this->logIn->action_login();
 			};
 
 			$this->generateView();

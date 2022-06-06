@@ -30,6 +30,12 @@
 							<form action='{$conf->action_root}logout' method='post'>			
 								<input type='submit' value='log out' class='p-2 btn btn-secondary' />
 							</form>
+
+							{if (core\RoleUtils::inRole('admin'))}
+								<form action='{$conf->action_root}adminPanel' method='post'>			
+									<input type='submit' value='admin panel' class='p-2 btn btn-secondary' />
+								</form>
+							{/if}
 						</div>
 					</div>
 				{else}
